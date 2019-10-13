@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ColorsList from '../ColorsList/ColorsList'
+import generateColors from '../../utils/generateColors'
 
-const App = () => (
-    <ColorsList
-        colors={[
-            '#65689D',
-            '#396006',
-            '#A4BE78',
-            '#91347C',
-            '#122785',
-            '#63EF8A',
-        ]}
-    />
-)
+const App = () => {
+    const [colors, setColors] = useState(generateColors())
+
+    useEffect(() => {
+        const handleKeyDown = e => {
+            if (e.which === 32) {
+                setColors(generateColors())
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [])
+
+    return <ColorsList colors={colors} />
+}
 
 export default App

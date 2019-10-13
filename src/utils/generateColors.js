@@ -9,7 +9,7 @@ const generateColor = () => {
     return color
 }
 
-const generateColors = colorsCount => {
+const generateColors = (colorsCount = 5) => {
     const colors = []
 
     for (let i = 0; i < colorsCount; i++) {
