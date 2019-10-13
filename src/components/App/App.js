@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../Header/Header'
 import ColorsList from '../ColorsList/ColorsList'
 import generateColors from '../../utils/generateColors'
+import styles from './App.module.scss'
 
 const App = () => {
     const [colors, setColors] = useState(generateColors())
@@ -21,7 +22,7 @@ const App = () => {
     }, [])
 
     return (
-        <div>
+        <div className={styles.App}>
             <Header />
             <ColorsList colors={colors} />
         </div>
