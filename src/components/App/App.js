@@ -10,6 +10,16 @@ const App = () => {
         switch (action.type) {
             case 'GENERATE':
                 return generateColors()
+            case 'LOCK':
+                return state.map(color => {
+                    if (color.id === action.id) {
+                        return {
+                            ...color,
+                            locked: !color.locked,
+                        }
+                    }
+                    return color
+                })
             default:
                 return state
         }

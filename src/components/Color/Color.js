@@ -3,10 +3,17 @@ import styles from './Color.module.scss'
 import LockedSvg from '../../svg/Locked'
 import UnlockedSvg from '../../svg/Unlocked'
 
-const Color = ({ color, locked }) => {
+const Color = ({ id, color, locked, dispatch }) => {
     const copyToClipboard = e => {
         e.target.select()
         document.execCommand('copy')
+    }
+
+    const lockOrUnlock = () => {
+        dispatch({
+            type: 'LOCK',
+            id,
+        })
     }
 
     return (
@@ -18,10 +25,10 @@ const Color = ({ color, locked }) => {
             }}
         >
             {locked ? (
-                <LockedSvg className={styles.Locked} />
+                <LockedSvg onClick={lockOrUnlock} className={styles.Locked} />
             ) : (
                 <UnlockedSvg
-                    onClick={() => console.log('hey')}
+                    onClick={lockOrUnlock}
                     className={styles.Unlocked}
                 />
             )}
