@@ -3,7 +3,9 @@
 .Color {
     flex-grow: 1;
     display: flex;
-    align-items: flex-end;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
     padding: 4rem;
 }
 
@@ -12,7 +14,7 @@
     background: none;
     border: none;
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     color: $white;
     letter-spacing: 1px;
     opacity: 0.4;
@@ -25,4 +27,20 @@
     &:hover {
         opacity: 0.7;
     }
+}
+
+.Locked,
+.Unlocked {
+    width: 5rem;
+    height: 5rem;
+    fill: $white;
+    cursor: pointer;
+}
+
+.Unlocked {
+    opacity: 0.5;
+}
+
+.Locked {
+    opacity: 0.8;
 }

@@ -1,12 +1,12 @@
 const generateColor = () => {
-    let color = '#'
-    const letters = '0123456789ABCDEF'
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
 
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)]
+    return {
+        value: `${r}, ${g}, ${b}`,
+        locked: false,
     }
-
-    return color
 }
 
 const generateColors = (colorsCount = 5) => {
