@@ -3,7 +3,7 @@ import styles from './Color.module.scss'
 import LockedSvg from '../../svg/Locked'
 import UnlockedSvg from '../../svg/Unlocked'
 
-const Color = ({ color: { value, locked } }) => {
+const Color = ({ color, locked }) => {
     const copyToClipboard = e => {
         e.target.select()
         document.execCommand('copy')
@@ -13,8 +13,8 @@ const Color = ({ color: { value, locked } }) => {
         <div
             className={styles.Color}
             style={{
-                background: `rgb(${value})`,
-                boxShadow: `0px 0px 0px 1px rgba(${value}, .5)`,
+                background: `rgb(${color})`,
+                boxShadow: `0px 0px 0px 1px rgba(${color}, .5)`,
             }}
         >
             {locked ? (
@@ -29,7 +29,7 @@ const Color = ({ color: { value, locked } }) => {
             <input
                 className={styles.ColorValue}
                 type="text"
-                value={`rgb(${value})`}
+                value={`rgb(${color})`}
                 onClick={e => copyToClipboard(e)}
             />
         </div>

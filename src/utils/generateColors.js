@@ -4,7 +4,7 @@ const generateColor = () => {
     const b = Math.floor(Math.random() * 256)
 
     return {
-        value: `${r}, ${g}, ${b}`,
+        color: `${r}, ${g}, ${b}`,
         locked: false,
     }
 }
