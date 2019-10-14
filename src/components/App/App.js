@@ -3,27 +3,11 @@ import ColorsContext from '../../context/ColorsContext'
 import Header from '../Header/Header'
 import ColorsList from '../ColorsList/ColorsList'
 import generateColors from '../../utils/generateColors'
+import colorsReducer from '../../reducers/colorsReducer'
 import styles from './App.module.scss'
 
 const App = () => {
-    const [state, dispatch] = useReducer((state, action) => {
-        switch (action.type) {
-            case 'GENERATE':
-                return generateColors()
-            case 'LOCK':
-                return state.map(color => {
-                    if (color.id === action.id) {
-                        return {
-                            ...color,
-                            locked: !color.locked,
-                        }
-                    }
-                    return color
-                })
-            default:
-                return state
-        }
-    }, generateColors())
+    const [state, dispatch] = useReducer(colorsReducer, generateColors())
 
     useEffect(() => {
         const handleKeyDown = e => {
