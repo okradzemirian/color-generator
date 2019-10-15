@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import convertRgbToHex from '../../utils/convertRgbToHex'
+import generateShadesAndTints from '../../utils/generateShadesAndTints'
 import styles from './Color.module.scss'
 import LockedSvg from '../../svg/Locked'
 import UnlockedSvg from '../../svg/Unlocked'
 
 const Color = ({ id, color, locked, dispatch }) => {
+    const [shades] = useState(generateShadesAndTints())
+
     const copyToClipboard = e => {
         e.target.select()
         document.execCommand('copy')
