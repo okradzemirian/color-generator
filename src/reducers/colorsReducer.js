@@ -1,10 +1,17 @@
-import generateColors from '../utils/generateColors'
+import { generateColor } from '../utils/generateColors'
 
 const colorsReducer = (state, action) => {
     switch (action.type) {
         case 'GENERATE':
-            const lockedColors = state.filter(({ locked }) => locked)
-            return [...lockedColors, ...generateColors(5 - lockedColors.length)]
+            return state.map(color => {
+                // if color is locked return or if not generate new one
+
+                if (color.locked) {
+                    return color
+                } else {
+                    return generateColor()
+                }
+            })
         case 'LOCK':
             return state.map(color => {
                 if (color.id === action.id) {

@@ -7,7 +7,7 @@ const ColorsList = () => {
     const { state, dispatch } = useContext(ColorsContext)
 
     return (
-        <div className={styles.ColorsList}>
+        <div className={styles.Colors}>
             {state.map((color, idx) => (
                 <Color key={idx} dispatch={dispatch} {...color} />
             ))}

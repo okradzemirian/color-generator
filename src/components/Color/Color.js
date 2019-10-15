@@ -1,4 +1,5 @@
 import React from 'react'
+import convertRgbToHex from '../../utils/convertRgbToHex'
 import styles from './Color.module.scss'
 import LockedSvg from '../../svg/Locked'
 import UnlockedSvg from '../../svg/Unlocked'
@@ -36,9 +37,11 @@ const Color = ({ id, color, locked, dispatch }) => {
             <input
                 className={styles.ColorValue}
                 type="text"
-                value={`rgb(${color})`}
+                value={convertRgbToHex(color)}
                 onClick={e => copyToClipboard(e)}
             />
+
+            <p className={styles.RgbValue}>RGB: {color}</p>
         </div>
     )
 }

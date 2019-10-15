@@ -1,6 +1,6 @@
 import uuid from 'uuid/v4'
 
-const generateColor = () => {
+export const generateColor = () => {
     const r = Math.floor(Math.random() * 256)
     const g = Math.floor(Math.random() * 256)
     const b = Math.floor(Math.random() * 256)
