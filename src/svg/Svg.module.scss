@@ -1,0 +1,14 @@
+@import '../variables';
+
+.Unlocked,
+.Locked {
+    width: 4rem;
+    height: 4rem;
+    opacity: 0.6;
+    fill: $white;
+    cursor: pointer;
+}
+
+.Locked {
+    opacity: 0.8;
+}

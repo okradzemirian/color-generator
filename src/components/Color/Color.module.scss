@@ -1,5 +1,9 @@
 @import '../../variables';
 
+.Svg {
+    margin-top: 3rem;
+}
+
 .Color {
     flex-grow: 1;
     display: flex;
@@ -40,8 +44,6 @@
     margin: 4rem 0;
 }
 
-.Locked,
-.Unlocked,
 .ShadesButton {
     width: 4rem;
     height: 4rem;
@@ -50,15 +52,9 @@
     margin-top: 3rem;
 }
 
-.Unlocked {
-    opacity: 0.6;
-}
-
-.Locked {
-    opacity: 0.8;
-}
-
 .ShadesButton {
+    width: 3.5rem;
+    height: 3.5rem;
     opacity: 0.6;
 
     &:hover {

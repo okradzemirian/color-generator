@@ -1,6 +1,7 @@
 import React from 'react'
+import styles from './Svg.module.scss'
 
-const Locked = props => (
+const Locked = ({ className, ...otherProps }) => (
     <svg
         version="1.1"
         id="Capa_1"
@@ -10,7 +11,8 @@ const Locked = props => (
         y="0px"
         viewBox="0 0 54 54"
         xmlSpace="preserve"
-        {...props}
+        className={`${styles.Unlocked} ${className || ''}`}
+        {...otherProps}
     >
         <path
             d="M43,20.113V14.5C43,6.505,35.822,0,27,0S11,6.505,11,14.5v5.613c-3.401,0.586-6,3.55-6,7.117v19.542

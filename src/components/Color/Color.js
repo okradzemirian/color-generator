@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ShadesList from '../ShadesList/ShadesList'
 import convertRgbToHex from '../../utils/convertRgbToHex'
 import generateShadesAndTints from '../../utils/generateShadesAndTints'
-import styles from './Color.module.scss'
 import LockedSvg from '../../svg/Locked'
 import UnlockedSvg from '../../svg/Unlocked'
 import ShadesButtonSvg from '../../svg/ShadesButton'
+import styles from './Color.module.scss'
 
 const Color = ({ id, color, locked, dispatch }) => {
     const [shades, setShades] = useState({
@@ -46,12 +46,9 @@ const Color = ({ id, color, locked, dispatch }) => {
             />
 
             {locked ? (
-                <LockedSvg onClick={lockOrUnlock} className={styles.Locked} />
+                <LockedSvg onClick={lockOrUnlock} className={styles.Svg} />
             ) : (
-                <UnlockedSvg
-                    onClick={lockOrUnlock}
-                    className={styles.Unlocked}
-                />
+                <UnlockedSvg onClick={lockOrUnlock} className={styles.Svg} />
             )}
 
             <input

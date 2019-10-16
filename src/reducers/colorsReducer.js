@@ -22,6 +22,11 @@ const colorsReducer = (state, action) => {
                 }
                 return color
             })
+        case 'UNLOCK_ALL':
+            return state.map(color => ({
+                ...color,
+                locked: false,
+            }))
         default:
             return state
     }
