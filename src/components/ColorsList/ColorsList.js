@@ -9,7 +9,7 @@ const ColorsList = () => {
     return (
         <div className={styles.Colors}>
             {state.map((color, idx) => (
-                <Color key={idx} dispatch={dispatch} {...color} />
+                <Color key={color.id} dispatch={dispatch} {...color} />
             ))}
         </div>
     )

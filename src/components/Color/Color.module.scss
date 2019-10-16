@@ -15,7 +15,7 @@
     background: none;
     border: none;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: $white;
     text-shadow: 0 0 4px $dark;
     letter-spacing: 1px;
@@ -41,17 +41,27 @@
 }
 
 .Locked,
-.Unlocked {
+.Unlocked,
+.ShadesButton {
     width: 4rem;
     height: 4rem;
     fill: $white;
     cursor: pointer;
+    margin-top: 3rem;
 }
 
 .Unlocked {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .Locked {
     opacity: 0.8;
+}
+
+.ShadesButton {
+    opacity: 0.6;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }

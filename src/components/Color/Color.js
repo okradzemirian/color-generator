@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ShadesList from '../ShadesList/ShadesList'
 import convertRgbToHex from '../../utils/convertRgbToHex'
 import generateShadesAndTints from '../../utils/generateShadesAndTints'
 import styles from './Color.module.scss'
 import LockedSvg from '../../svg/Locked'
 import UnlockedSvg from '../../svg/Unlocked'
+import ShadesButtonSvg from '../../svg/ShadesButton'
 
 const Color = ({ id, color, locked, dispatch }) => {
-    const [shadesVisible, setShadesVisible] = useState(false)
+    const [shades, setShades] = useState({
+        visible: false,
+        selected: null,
+    })
 
     const copyToClipboard = e => {
         e.target.select()
@@ -25,15 +29,21 @@ const Color = ({ id, color, locked, dispatch }) => {
         <div
             className={styles.Color}
             style={{
-                background: `rgb(${color})`,
+                background: `rgb(${shades.selected || color})`,
                 boxShadow: `0px 0px 0px 1px rgba(${color}, .5)`,
             }}
         >
-            {shadesVisible && (
-                <ShadesList shades={generateShadesAndTints(color)} />
+            {shades.visible && (
+                <ShadesList
+                    setShades={setShades}
+                    shades={generateShadesAndTints(color)}
+                />
             )}
 
-            <button onClick={() => setShadesVisible(true)}>Shades</button>
+            <ShadesButtonSvg
+                onClick={() => setShades({ ...shades, visible: true })}
+                className={styles.ShadesButton}
+            />
 
             {locked ? (
                 <LockedSvg onClick={lockOrUnlock} className={styles.Locked} />
@@ -47,11 +57,11 @@ const Color = ({ id, color, locked, dispatch }) => {
             <input
                 className={styles.ColorValue}
                 type="text"
-                value={convertRgbToHex(color)}
+                value={convertRgbToHex(shades.selected || color)}
                 onClick={e => copyToClipboard(e)}
             />
 
-            <p className={styles.RgbValue}>RGB: {color}</p>
+            <p className={styles.RgbValue}>RGB: {shades.selected || color}</p>
         </div>
     )
 }
