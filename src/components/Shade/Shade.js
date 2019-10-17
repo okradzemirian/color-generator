@@ -9,7 +9,7 @@ const Shade = ({ shade, setShades }) => (
             background: `rgb(${shade})`,
         }}
     >
-        {`rgb(${shade})`}
+        <p className={styles.Text}>{`rgb(${shade})`}</p>
     </div>
 )
 

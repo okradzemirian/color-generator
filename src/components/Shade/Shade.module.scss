@@ -4,4 +4,13 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    &:hover .Text {
+        opacity: 1;
+    }
+}
+
+.Text {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }

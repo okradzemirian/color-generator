@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import ShadesList from '../ShadesList/ShadesList'
 import convertRgbToHex from '../../utils/convertRgbToHex'
 import generateShadesAndTints from '../../utils/generateShadesAndTints'
@@ -26,40 +27,53 @@ const Color = ({ id, color, locked, dispatch }) => {
     }
 
     return (
-        <div
-            className={styles.Color}
-            style={{
-                background: `rgb(${shades.selected || color})`,
-                boxShadow: `0px 0px 0px 1px rgba(${color}, .5)`,
-            }}
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
         >
-            {shades.visible && (
-                <ShadesList
-                    setShades={setShades}
-                    shades={generateShadesAndTints(color)}
+            <div
+                className={styles.Color}
+                style={{
+                    background: `rgb(${shades.selected || color})`,
+                    boxShadow: `0px 0px 0px 1px rgba(${color}, .5)`,
+                }}
+            >
+                <AnimatePresence>
+                    {shades.visible && (
+                        <ShadesList
+                            setShades={setShades}
+                            shades={generateShadesAndTints(color)}
+                        />
+                    )}
+                </AnimatePresence>
+
+                <ShadesButtonSvg
+                    onClick={() => setShades({ ...shades, visible: true })}
+                    className={styles.ShadesButton}
                 />
-            )}
 
-            <ShadesButtonSvg
-                onClick={() => setShades({ ...shades, visible: true })}
-                className={styles.ShadesButton}
-            />
+                {locked ? (
+                    <LockedSvg onClick={lockOrUnlock} className={styles.Svg} />
+                ) : (
+                    <UnlockedSvg
+                        onClick={lockOrUnlock}
+                        className={styles.Svg}
+                    />
+                )}
 
-            {locked ? (
-                <LockedSvg onClick={lockOrUnlock} className={styles.Svg} />
-            ) : (
-                <UnlockedSvg onClick={lockOrUnlock} className={styles.Svg} />
-            )}
+                <input
+                    className={styles.ColorValue}
+                    type="text"
+                    value={convertRgbToHex(shades.selected || color)}
+                    onClick={e => copyToClipboard(e)}
+                />
 
-            <input
-                className={styles.ColorValue}
-                type="text"
-                value={convertRgbToHex(shades.selected || color)}
-                onClick={e => copyToClipboard(e)}
-            />
-
-            <p className={styles.RgbValue}>RGB: {shades.selected || color}</p>
-        </div>
+                <p className={styles.RgbValue}>
+                    RGB: {shades.selected || color}
+                </p>
+            </div>
+        </motion.div>
     )
 }
 
