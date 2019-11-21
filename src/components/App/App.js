@@ -1,20 +1,17 @@
-import React, { useEffect, useReducer } from 'react'
-import ColorsContext from '../../context/ColorsContext'
+import React, { useEffect, useContext } from 'react'
+
+import ColorsContext from '../../providers/colors/ColorsContext'
 import Header from '../Header/Header'
 import ColorsList from '../ColorsList/ColorsList'
-import generateColors from '../../utils/generateColors'
-import colorsReducer from '../../reducers/colorsReducer'
 import styles from './App.module.scss'
 
 const App = () => {
-    const [state, dispatch] = useReducer(colorsReducer, generateColors())
+    const { generateNewColors } = useContext(ColorsContext)
 
     useEffect(() => {
         const handleKeyDown = e => {
             if (e.which === 32) {
-                dispatch({
-                    type: 'GENERATE',
-                })
+                generateNewColors()
             }
         }
 
@@ -23,15 +20,13 @@ const App = () => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown)
         }
-    }, [])
+    }, [generateNewColors])
 
     return (
-        <ColorsContext.Provider value={{ state, dispatch }}>
-            <div className={styles.App}>
-                <Header />
-                <ColorsList />
-            </div>
-        </ColorsContext.Provider>
+        <div className={styles.App}>
+            <Header />
+            <ColorsList />
+        </div>
     )
 }
 

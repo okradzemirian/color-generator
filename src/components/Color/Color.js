@@ -1,29 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+
+import ColorsContext from '../../providers/colors/ColorsContext'
 import ShadesList from '../ShadesList/ShadesList'
 import convertRgbToHex from '../../utils/convertRgbToHex'
 import generateShadesAndTints from '../../utils/generateShadesAndTints'
-import LockedSvg from '../../svg/Locked'
-import UnlockedSvg from '../../svg/Unlocked'
-import ShadesButtonSvg from '../../svg/ShadesButton'
+import { ReactComponent as UnlockedIcon } from '../../assets/unlocked.svg'
+import { ReactComponent as LockedIcon } from '../../assets/locked.svg'
+import { ReactComponent as ShadesButton } from '../../assets/shades-button.svg'
 import styles from './Color.module.scss'
 
-const Color = ({ id, color, locked, dispatch }) => {
+const Color = ({ id, color, locked }) => {
     const [shades, setShades] = useState({
         visible: false,
         selected: null,
     })
 
+    const { toggleLockColor } = useContext(ColorsContext)
+
     const copyToClipboard = e => {
         e.target.select()
         document.execCommand('copy')
-    }
-
-    const lockOrUnlock = () => {
-        dispatch({
-            type: 'LOCK',
-            id,
-        })
     }
 
     return (
@@ -48,23 +45,26 @@ const Color = ({ id, color, locked, dispatch }) => {
                     )}
                 </AnimatePresence>
 
-                <ShadesButtonSvg
+                <ShadesButton
                     onClick={() => setShades({ ...shades, visible: true })}
                     className={styles.ShadesButton}
                 />
 
                 {locked ? (
-                    <LockedSvg onClick={lockOrUnlock} className={styles.Svg} />
+                    <LockedIcon
+                        onClick={() => toggleLockColor(id)}
+                        className={styles.Svg}
+                    />
                 ) : (
-                    <UnlockedSvg
-                        onClick={lockOrUnlock}
+                    <UnlockedIcon
+                        onClick={() => toggleLockColor(id)}
                         className={styles.Svg}
                     />
                 )}
 
                 <input
                     className={styles.ColorValue}
-                    type="text"
+                    type='text'
                     value={convertRgbToHex(shades.selected || color)}
                     onClick={e => copyToClipboard(e)}
                 />

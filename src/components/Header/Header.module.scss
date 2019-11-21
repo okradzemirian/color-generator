@@ -13,13 +13,30 @@
     color: $grey;
 }
 
+.Undo,
+.Redo,
 .UnlockAll {
+    margin: 0 1rem;
     fill: $primary;
     width: 2.5rem;
     height: 2.5rem;
     transition: fill 0.25s ease-in-out;
+    cursor: pointer;
 
     &:hover {
         fill: $dark-primary;
+    }
+}
+
+.UnlockAll {
+    margin-right: 0;
+}
+
+.DisabledIcon {
+    opacity: 0.6;
+    cursor: default;
+
+    &:hover {
+        fill: $primary;
     }
 }

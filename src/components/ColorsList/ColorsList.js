@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
-import ColorsContext from '../../context/ColorsContext'
+import ColorsContext from '../../providers/colors/ColorsContext'
 import Color from '../Color/Color'
 import styles from './ColorsList.module.scss'
 
 const ColorsList = () => {
-    const { state, dispatch } = useContext(ColorsContext)
+    const { colors } = useContext(ColorsContext)
 
     return (
         <div className={styles.Colors}>
-            {state.map(color => (
-                <Color key={color.id} dispatch={dispatch} {...color} />
+            {colors.map(color => (
+                <Color key={color.id} {...color} />
             ))}
         </div>
     )
