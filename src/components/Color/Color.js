@@ -28,6 +28,7 @@ const Color = ({ id, color, locked }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
+            className={styles.AnimatedColor}
         >
             <div
                 className={styles.Color}
